@@ -12,7 +12,4 @@
     <description>ETravel fork of .NET Protocol Buffers https://github.com/mgravell/protobuf-net/commit/719eb6a736bcb6aae242ddc859c7363e9a86b101</description>
     <tags>ETravel.protobuf-net</tags>
   </metadata>
-  <files>
-    <file src="bin\Release\*.*" target="lib"/>
-  </files>
 </package>
