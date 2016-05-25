@@ -955,7 +955,7 @@ namespace ProtoBuf.Meta
         /// </summary>        
         public MetaType Add(int fieldNumber, string memberName)
         {
-            AddField(fieldNumber, memberName, null, null, null);
+            AddField(fieldNumber, memberName,null, null, null, null);
             return this;
         }
         /// <summary>
@@ -964,7 +964,7 @@ namespace ProtoBuf.Meta
         /// </summary>
         public ValueMember AddField(int fieldNumber, string memberName)
         {
-            return AddField(fieldNumber, memberName, null, null, null);
+            return AddField(fieldNumber, memberName, null, null, null, null);
         }
         /// <summary>
         /// Gets or sets whether the type should use a parameterless constructor (the default),
@@ -1054,7 +1054,7 @@ namespace ProtoBuf.Meta
         /// </summary>        
         public MetaType Add(int fieldNumber, string memberName, object defaultValue)
         {
-            AddField(fieldNumber, memberName, null, null, defaultValue);
+            AddField(fieldNumber, memberName, null, null, null, defaultValue);
             return this;
         }
 
@@ -1132,7 +1132,13 @@ namespace ProtoBuf.Meta
         /// </summary>
         public MetaType Add(int fieldNumber, string memberName, Type itemType, Type defaultType)
         {
-            AddField(fieldNumber, memberName, itemType, defaultType, null);
+            AddField(fieldNumber, memberName,null, itemType, defaultType, null);
+            return this;
+        }
+
+        public MetaType Add(int fieldNumber,string memberName, Type forcedMemberType)
+        {
+            AddField(fieldNumber, memberName, forcedMemberType, null, null, null);
             return this;
         }
 
@@ -1142,23 +1148,27 @@ namespace ProtoBuf.Meta
         /// </summary>
         public ValueMember AddField(int fieldNumber, string memberName, Type itemType, Type defaultType)
         {
-            return AddField(fieldNumber, memberName, itemType, defaultType, null);
+            return AddField(fieldNumber, memberName, null, itemType, defaultType, null);
         }
         
-        private ValueMember AddField(int fieldNumber, string memberName, Type itemType, Type defaultType, object defaultValue)
+        private ValueMember AddField(int fieldNumber, string memberName,Type miType, Type itemType, Type defaultType, object defaultValue)
         {
             MemberInfo[] members = type.GetMember(memberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             if(members == null || members.Length != 1) throw new ArgumentException("Unable to determine member: " + memberName, "memberName");
             MemberInfo mi = members[0];
-            Type miType;
-            switch (mi.MemberType)
+            if (miType == null)
             {
-                case MemberTypes.Field:
-                    miType = ((FieldInfo)mi).FieldType; break;
-                case MemberTypes.Property:
-                    miType = ((PropertyInfo)mi).PropertyType; break;
-                default:
-                    throw new NotSupportedException(mi.MemberType.ToString());
+                switch (mi.MemberType)
+                {
+                    case MemberTypes.Field:
+                        miType = ((FieldInfo) mi).FieldType;
+                        break;
+                    case MemberTypes.Property:
+                        miType = ((PropertyInfo) mi).PropertyType;
+                        break;
+                    default:
+                        throw new NotSupportedException(mi.MemberType.ToString());
+                }
             }
 
             ResolveListTypes(miType, ref itemType, ref defaultType);
