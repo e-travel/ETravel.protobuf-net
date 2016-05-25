@@ -259,6 +259,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="protobuf-net.nuspec" />
     <None Include="Web\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
