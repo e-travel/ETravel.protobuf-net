@@ -375,15 +375,12 @@
   <ItemGroup>
     <Content Include="..\LateLoaded\bin\Release\LateLoaded.dll">
       <Link>LateLoaded.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="..\Tools\protoc-license.txt">
       <Link>protoc-license.txt</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="PEVerify.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="PEVerify.exe" />
     <None Include="..\ProtoGen\protobuf-net.proto">
       <Link>protobuf-net.proto</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -392,9 +389,7 @@
       <Link>protoc.exe</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="PEVerify.exe.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="PEVerify.exe.config" />
     <None Include="ProtoGen\Empty.proto">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

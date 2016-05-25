@@ -29,7 +29,7 @@
     <ThrowErrorsInValidation>false</ThrowErrorsInValidation>
     <FileUpgradeFlags>40</FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
-    <UpgradeBackupLocation>D:\projects\ETravel.protobuf-net\Backup\SilverlightExtended\</UpgradeBackupLocation>
+    <UpgradeBackupLocation>D:\projects\ETravel.protobuf-net\Backup2\</UpgradeBackupLocation>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
   </PropertyGroup>
